@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Nova Vida - Recuperação e Saúde</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* --- ESTILOS GERAIS --- */
+        :root {
+            --primary: #008080; /* Cor Teal/Verde parecida com o site */
+            --dark: #333;
+            --light: #f4f4f4;
+            --white: #fff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        
+        body { overflow-x: hidden; }
+        
+        /* Botão Padrão */
+        .btn {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            display: inline-block;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+        /* --- HERO SECTION (Topo) --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('banner1-one-page.avif');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+        
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        /* --- SEÇÕES PADRÃO --- */
+        section { padding: 80px 20px; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        
+        h2 { text-align: center; margin-bottom: 50px; color: var(--primary); font-size: 2.2rem; }
+
+        /* --- SOBRE (Grid) --- */
+        .sobre-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .sobre-img img { width: 100%; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+        /* --- CARDS DE SERVIÇOS --- */
+        .servicos { background-color: var(--light); }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+        .card:hover { transform: translateY(-10px); }
+        .card i { font-size: 40px; color: var(--primary); margin-bottom: 20px; }
+
+        /* --- FORMULÁRIO --- */
+        .form-box { max-width: 600px; margin: 0 auto; }
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        /* --- BOTÃO WHATSAPP FLUTUANTE --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* --- RESPONSIVO --- */
+        @media (max-width: 768px) {
+            .sobre-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div data-aos="fade-up" data-aos-duration="1000">
+            <h1>Recanto Nova Vida</h1>
+            <p>Tratamento humanizado e ambiente acolhedor para a recuperação de quem você ama.</p>
+            <a href="#contato" class="btn">Falar com Especialista</a>
+        </div>
+    </header>
+
+    <section id="sobre">
+        <div class="container">
+            <div class="sobre-grid">
+                <div class="sobre-img" data-aos="fade-right">
+                    <img src="banner-one-page.webp" alt="Clinica">
+                </div>
+                <div class="sobre-txt" data-aos="fade-left">
+                    <h2>Nossa Estrutura</h2>
+                    <p>Oferecemos um espaço amplo e tranquilo, ideal para o processo de reabilitação. Contamos com equipe multidisciplinar 24 horas.</p>
+                    <br>
+                    <p>Segurança, conforto e sigilo absoluto para os pacientes e familiares.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="servicos">
+        <div class="container">
+            <h2>Tratamentos</h2>
+            <div class="cards-grid">
+                <div class="card" data-aos="flip-left" data-aos-delay="100">
+                    <i class="fas fa-user-md"></i>
+                    <h3>Desintoxicação</h3>
+                    <p>Acompanhamento médico intensivo na fase inicial.</p>
+                </div>
+                <div class="card" data-aos="flip-left" data-aos-delay="200">
+                    <i class="fas fa-heart"></i>
+                    <h3>Psicoterapia</h3>
+                    <p>Atendimento psicológico individual e em grupo.</p>
+                </div>
+                <div class="card" data-aos="flip-left" data-aos-delay="300">
+                    <i class="fas fa-users"></i>
+                    <h3>Ressocialização</h3>
+                    <p>Preparação para o retorno à vida social e familiar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato">
+        <div class="container">
+            <h2>Entre em Contato</h2>
+            <div class="form-box" data-aos="zoom-in">
+                <form action="https://formspree.io/f/SEU_CODIGO_AQUI" method="POST">
+                    <input type="text" name="nome" placeholder="Seu Nome" required>
+                    <input type="email" name="email" placeholder="Seu E-mail" required>
+                    <input type="tel" name="telefone" placeholder="Seu WhatsApp" required>
+                    <textarea name="mensagem" rows="5" placeholder="Como podemos ajudar?"></textarea>
+                    <button type="submit" class="btn" style="width: 100%">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/5511964545706" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init(); // Inicia as animações
+    </script>
+
+</body>
+</html>
