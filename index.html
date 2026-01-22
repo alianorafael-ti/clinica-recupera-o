@@ -3,119 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clínica Nova Vida - Recuperação e Saúde</title>
+    <title>Recanto Nova Vida - Recuperação e Saúde</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         /* --- ESTILOS GERAIS --- */
         :root {
-            --primary: #008080; /* Cor Teal/Verde parecida com o site */
-            --dark: #333;
-            --light: #f4f4f4;
+            --primary: #008080; /* Teal padrão */
+            --dark: #222;
+            --light: #f8f9fa;
             --white: #fff;
+            --feminino: #e91e63;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         
-        body { overflow-x: hidden; }
+        body { overflow-x: hidden; width: 100%; background-color: var(--white); color: #444; }
         
-        /* Botão Padrão */
+        .container { max-width: 1150px; margin: 0 auto; padding: 0 20px; }
+        section { padding: 80px 0; }
+
+        h2 { text-align: center; margin-bottom: 50px; color: var(--primary); font-size: 2.2rem; font-weight: 700; }
+
         .btn {
             background-color: var(--primary);
             color: var(--white);
-            padding: 12px 25px;
+            padding: 14px 30px;
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 50px;
             font-weight: bold;
             display: inline-block;
             transition: 0.3s;
             border: none;
             cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        .btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.15); color: #fff; }
 
-        /* --- HERO SECTION (Topo) --- */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('banner1-one-page.avif');
-            background-size: cover;
-            background-position: center;
+        /* --- HERO SECTION COM HOVER --- */
+        .hero-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .hero-container img {
+            width: 100%;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2); /* Brilho leve no hover */
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-            text-align: center;
-            color: white;
-            padding: 20px;
-        }
-        
-        .hero h1 { font-size: 3rem; margin-bottom: 20px; }
-        .hero p { font-size: 1.2rem; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; }
-
-        /* --- SEÇÕES PADRÃO --- */
-        section { padding: 80px 20px; }
-        .container { max-width: 1100px; margin: 0 auto; }
-        
-        h2 { text-align: center; margin-bottom: 50px; color: var(--primary); font-size: 2.2rem; }
-
-        /* --- SOBRE (Grid) --- */
-        .sobre-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
             align-items: center;
+            text-align: center;
+            color: #111; /* Texto escuro para contraste */
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
         }
-        .sobre-img img { width: 100%; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
 
-        /* --- CARDS DE SERVIÇOS --- */
-        .servicos { background-color: var(--light); }
+        .hero-container:hover .hero-overlay { opacity: 1; pointer-events: auto; background: rgba(255, 255, 255, 0.6); }
+        .hero-container:hover img { transform: scale(1.03); }
+
+        .hero-overlay h1 { font-size: 3rem; margin-bottom: 10px; font-weight: 800; color: var(--primary); }
+        .hero-overlay p { font-size: 1.3rem; margin-bottom: 25px; max-width: 700px; font-weight: 600; }
+
+        /* --- CARDS GRID --- */
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
         }
+
         .card {
             background: var(--white);
-            padding: 30px;
-            border-radius: 10px;
+            padding: 40px 30px;
+            border-radius: 15px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
             transition: 0.3s;
+            border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
-        .card:hover { transform: translateY(-10px); }
-        .card i { font-size: 40px; color: var(--primary); margin-bottom: 20px; }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); }
+        
+        .card i { font-size: 45px; color: var(--primary); margin-bottom: 20px; }
+        .card h3 { margin-bottom: 15px; font-size: 1.5rem; color: #333; }
+        .card p { font-size: 1rem; line-height: 1.6; color: #666; }
+
+        .card-list { list-style: none; text-align: left; margin: 20px 0; }
+        .card-list li { margin-bottom: 10px; font-size: 0.95rem; display: flex; align-items: center; }
+        .card-list li i { font-size: 16px; margin-right: 10px; margin-bottom: 0; color: var(--primary); }
+
+        /* --- SEÇÃO SOBRE --- */
+        .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .sobre-img img { width: 100%; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        .sobre-txt h2 { text-align: left; margin-bottom: 25px; }
+
+        /* --- BANNER INFORMATIVO --- */
+        .info-banner {
+            background: var(--light);
+            border-left: 8px solid var(--primary);
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 50px;
+        }
+        .info-banner h3 { color: var(--primary); margin-bottom: 15px; font-size: 1.6rem; }
 
         /* --- FORMULÁRIO --- */
-        .form-box { max-width: 600px; margin: 0 auto; }
-        input, textarea {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
+        .form-box { max-width: 700px; margin: 0 auto; background: var(--light); padding: 40px; border-radius: 20px; }
+        input, textarea { width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; }
 
-        /* --- BOTÃO WHATSAPP FLUTUANTE --- */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25d366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            z-index: 1000;
-            text-decoration: none;
-            animation: pulse 2s infinite;
-        }
+        /* --- WHATSAPP --- */
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background-color: #25d366; color: white; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 35px; box-shadow: 0 8px 25px rgba(0,0,0,0.2); z-index: 9999; text-decoration: none; animation: pulse 2s infinite; }
 
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
@@ -123,84 +142,124 @@
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
-        /* --- RESPONSIVO --- */
         @media (max-width: 768px) {
             .sobre-grid { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 2rem; }
+            .hero-overlay h1 { font-size: 2rem; }
+            .hero-overlay p { font-size: 1rem; }
+            section { padding: 50px 0; }
         }
     </style>
 </head>
 <body>
 
-    <header class="hero">
-        <div data-aos="fade-up" data-aos-duration="1000">
-            <h1>Recanto Nova Vida</h1>
-            <p>Tratamento humanizado e ambiente acolhedor para a recuperação de quem você ama.</p>
-            <a href="#contato" class="btn">Falar com Especialista</a>
+    <div class="container">
+        <div class="hero-container" data-aos="zoom-in" data-aos-duration="1200">
+            <img src="amor-e-vida2.png" alt="Amor e Vida">
+            <div class="hero-overlay">
+                <h1>Amor e Vida</h1>
+                <p>Tratamento humanizado e ambiente acolhedor para a recuperação de quem você ama.</p>
+                <a href="https://wa.me/5511940472755" target="_blank" class="btn">Falar com Especialista</a>
+            </div>
         </div>
-    </header>
+    </div>
 
     <section id="sobre">
         <div class="container">
             <div class="sobre-grid">
                 <div class="sobre-img" data-aos="fade-right">
-                    <img src="banner-one-page.webp" alt="Clinica">
+                    <img src="banner-one-page.webp" alt="Nossa Clínica">
                 </div>
                 <div class="sobre-txt" data-aos="fade-left">
                     <h2>Nossa Estrutura</h2>
-                    <p>Oferecemos um espaço amplo e tranquilo, ideal para o processo de reabilitação. Contamos com equipe multidisciplinar 24 horas.</p>
+                    <p>Oferecemos um espaço amplo e tranquilo, ideal para o processo de reabilitação. Contamos com equipe multidisciplinar 24 horas preparada para oferecer estabilidade física e emocional.</p>
                     <br>
-                    <p>Segurança, conforto e sigilo absoluto para os pacientes e familiares.</p>
+                    <p><strong>Segurança, conforto e sigilo absoluto</strong> para os pacientes e seus familiares em todos os momentos.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="servicos">
+    <section style="background-color: var(--light);">
         <div class="container">
-            <h2>Tratamentos</h2>
+            <h2 data-aos="fade-up">Especialidades</h2>
             <div class="cards-grid">
+                <div class="card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-wine-bottle"></i>
+                    <h3>Alcoolismo</h3>
+                    <p>Desintoxicação supervisionada e suporte psicológico para recuperar o controle da vida e evitar recaídas.</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-pills"></i>
+                    <h3>Dependência Química</h3>
+                    <p>Programa especializado com terapias personalizadas para superar a dependência de forma segura e sustentável.</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="300" style="border-top: 5px solid var(--feminino);">
+                    <i class="fas fa-venus" style="color: var(--feminino);"></i>
+                    <h3>Unidade Feminina</h3>
+                    <p>Ambiente exclusivo e acolhedor projetado para o tratamento feminino com total privacidade e respeito.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2 data-aos="fade-up">Modalidades de Internação</h2>
+            <div class="cards-grid">
+                <div class="card" data-aos="flip-left">
+                    <i class="fas fa-user-check"></i>
+                    <h3>Voluntária</h3>
+                    <p>Apoio estruturado para pacientes que reconhecem a necessidade de tratamento e buscam o recomeço.</p>
+                </div>
                 <div class="card" data-aos="flip-left" data-aos-delay="100">
-                    <i class="fas fa-user-md"></i>
-                    <h3>Desintoxicação</h3>
-                    <p>Acompanhamento médico intensivo na fase inicial.</p>
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Involuntária</h3>
+                    <p>Realizada conforme normas legais, indicada para casos de risco, priorizando a segurança e a vida.</p>
                 </div>
                 <div class="card" data-aos="flip-left" data-aos-delay="200">
-                    <i class="fas fa-heart"></i>
-                    <h3>Psicoterapia</h3>
-                    <p>Atendimento psicológico individual e em grupo.</p>
+                    <i class="fas fa-ambulance"></i>
+                    <h3>Remoção 24h</h3>
+                    <p>Transporte especializado e humanizado com equipe treinada para momentos delicados.</p>
                 </div>
-                <div class="card" data-aos="flip-left" data-aos-delay="300">
-                    <i class="fas fa-users"></i>
-                    <h3>Ressocialização</h3>
-                    <p>Preparação para o retorno à vida social e familiar.</p>
+            </div>
+
+            <div class="info-banner" data-aos="fade-up">
+                <h3>Por que buscar internação?</h3>
+                <p>Internar é dar uma chance real à mudança. Na clínica, o paciente é acolhido com respeito em um ambiente seguro, limpo e organizado. Contamos com <strong>profissionais especializados</strong> que oferecem suporte físico, emocional e psicológico durante todo o tratamento.</p>
+                <br>
+                <div style="text-align: center;">
+                    <a href="https://wa.me/5511940472755" class="btn">Agende uma Visita agora</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contato">
+    <section id="contato" style="background-color: var(--light);">
         <div class="container">
-            <h2>Entre em Contato</h2>
+            <h2 data-aos="fade-up">Entre em Contato</h2>
             <div class="form-box" data-aos="zoom-in">
-                <form action="https://formspree.io/f/SEU_CODIGO_AQUI" method="POST">
-                    <input type="text" name="nome" placeholder="Seu Nome" required>
-                    <input type="email" name="email" placeholder="Seu E-mail" required>
-                    <input type="tel" name="telefone" placeholder="Seu WhatsApp" required>
-                    <textarea name="mensagem" rows="5" placeholder="Como podemos ajudar?"></textarea>
+                <form action="#" method="POST">
+                    <input type="text" placeholder="Seu Nome Completo" required>
+                    <input type="email" placeholder="Seu Melhor E-mail" required>
+                    <input type="tel" placeholder="Seu WhatsApp" required>
+                    <textarea rows="5" placeholder="Como podemos ajudar sua família hoje?"></textarea>
                     <button type="submit" class="btn" style="width: 100%">Enviar Mensagem</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <a href="https://wa.me/5511964545706" class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/5511940472755" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init(); // Inicia as animações
+        AOS.init({
+            duration: 1000,
+            once: false,
+            mirror: true
+        });
     </script>
 
 </body>
